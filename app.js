@@ -31,6 +31,7 @@ app.get('/', (req, res)=>{
         })
 }
 
+
 function createtour(req, res){
     console.log(req.body); //req.body is accecible only due to middleware
     const newId = tours[tours.length-1].id+1;
@@ -80,12 +81,54 @@ function updateTour(req, res){
     })
 }
 
-app.route('/api/v1/tours').get(getalltours).post(createtour);
-app.route('/api/v1/tours/:id').get(getTour).patch(updateTour);
+const getallusers = (req, res)=>{
+    res.status(500).json({
+        status: 'error',
+        message: "This route is not yte defined"
+    })
+}
+
+const getUser = (req, res)=>{
+    res.status(500).json({
+        status: 'error',
+        message: "This route is not yte defined"
+    })
+}
+
+const createUser = (req, res)=>{
+    res.status(500).json({
+        status: 'error',
+        message: "This route is not yte defined"
+    })
+}
+
+const updateUser = (req, res)=>{
+    res.status(500).json({
+        status: 'error',
+        message: "This route is not yte defined"
+    })
+}
+
+const deleteUser = (req, res)=>{
+    res.status(500).json({
+        status: 'error',
+        message: "This route is not yte defined"
+    })
+}
+
+//ROUTES
+app.use('/api/v1/tours', tourRouter); //here tourRoute is a sub-application having it's own routes. mouting a router ona  route 
+app.use('/api/v1/users', userRouter);
+
+const tourRouter =express.Router(); //create a Router
+const userRouter=express.Router();
+tourRouter.route('/').get(getalltours).post(createtour);
+tourRouter.route('/:id').get(getTour).patch(updateTour);
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`))
 
-app.route('/api/v1/usurs').get(getallusers).post(createUser)
+userRouter.route('/api/v1/users').get(getallusers).post(createUser)
+userRouter.route('/api/v1/users/:id').get(getUser).patch(updateUser).delete(deleteUser)
 
 // '/api/v1/tours/:id/:x/:y?'  // "?" means optional parameter" 
 
