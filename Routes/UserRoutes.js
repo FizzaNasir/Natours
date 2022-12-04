@@ -1,40 +1,15 @@
 const express=require('express')
+const userController=require('./../Controller/userController'); //it contains all the functions
 
-const getallusers = (req, res)=>{
-    res.status(500).json({
-        status: 'error',
-        message: "This route is not yte defined"
-    })
-}
-
-const getUser = (req, res)=>{
-    res.status(500).json({
-        status: 'error',
-        message: "This route is not yte defined"
-    })
-}
-
-const createUser = (req, res)=>{
-    res.status(500).json({
-        status: 'error',
-        message: "This route is not yte defined"
-    })
-}
-
-const updateUser = (req, res)=>{
-    res.status(500).json({
-        status: 'error',
-        message: "This route is not yte defined"
-    })
-}
-
-const deleteUser = (req, res)=>{
-    res.status(500).json({
-        status: 'error',
-        message: "This route is not yte defined"
-    })
-}
 const router=express.Router();
-router.route('/api/v1/users').get(getallusers).post(createUser)
-router.route('/api/v1/users/:id').get(getUser).patch(updateUser).delete(deleteUser)
+router
+.route('/api/v1/users')
+.get(userController.getallusers)
+.post(userController.createUser)
+
+router
+.route('/api/v1/users/:id')
+.get(userController.getUser)
+.patch(userController.updateUser)
+.delete(userController.deleteUser)
 module.exports = router;

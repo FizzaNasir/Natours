@@ -2,7 +2,7 @@ const express = require('express');
 
 const app= express();
 
-const tourRouter = require('./Routes/TourRoutes');
+const tourRouter = require('./Routes/TourRoutes'); //declaring a middleware
 const userRouter = require('./Routes/UserRoutes');
 
 app.use(express.json()); //middleware: function that modify incomming req data 
@@ -81,7 +81,5 @@ app.use('/api/v1/users', userRouter);
 //     })
 //     })
 // })
-const port=3000;
-app.listen(port, ()=>{
-    console.log('App running on port 3000')
-})
+
+module.exports = app;
