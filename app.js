@@ -5,7 +5,9 @@ const app= express();
 const tourRouter = require('./Routes/TourRoutes'); //declaring a middleware
 const userRouter = require('./Routes/UserRoutes');
 
+//Middlewares
 app.use(express.json()); //middleware: function that modify incomming req data 
+app.use(express.static(`${__dirname}/public`))
 
 //Our own middleware
 app.use((req,res,next)=>{
